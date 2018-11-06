@@ -4,10 +4,14 @@ const path = require('path')
 const cookieParser = require('cookie-parser')
 const logger = require('morgan')
 const expressHbs = require('express-handlebars')
+const mongoose = require('mongoose')
+const secret = require('./config/secrets')
 
 const indexRouter = require('./routes/index')
 
 const app = express()
+
+mongoose.connect(`mongodb://${secret.dbuser}:${secret.dbpass}@ds151853.mlab.com:51853/shopping-cart`, {useNewUrlParser: true })
 
 // view engine setup
 app.engine('.hbs', expressHbs({
